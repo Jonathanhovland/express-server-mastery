@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 
-const cakes = require("../cakes.json")
+let cakes = require("../cakes.json")
 
 router.get("/", (req, res) => {
     res.json({ cakes: cakes })
@@ -28,20 +28,30 @@ router.post("/", (req, res) => {
 })
 
 router.put("/:id", (req, res) => {
-    const body = req.body
+    let body = req.body
 
-    const updatedCakes = cakes.filter(cake => {
-
+    let updateCakes = cakes.map(cake => {
         if (cake.id == req.params.id) {
-            return body
+            cake = body
+            return cake
         }
         return cake
     })
 
-    res.json({ cakes: updatedCakes })
+    console.log(cakes)
+    cakes = updateCakes
+
+    let returnUpdated = cakes.filter(cake => {
+        return cake.id = req.params.id
+    })[0]
+
+
+
+    res.json({ updatedCake: returnUpdated })
+
 })
 
-router.delete
+// router.delete
 
 
 
