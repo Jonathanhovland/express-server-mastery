@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
 
     cakes.push(newCake)
 
-    res.json({ cakes: cakes })
+    res.json({ cakes: newCake })
 })
 
 router.put("/:id", (req, res) => {
@@ -38,11 +38,10 @@ router.put("/:id", (req, res) => {
         return cake
     })
 
-    console.log(cakes)
     cakes = updateCakes
 
     let returnUpdated = cakes.filter(cake => {
-        return cake.id = req.params.id
+        return cake = req.params.id
     })[0]
 
 
@@ -51,7 +50,18 @@ router.put("/:id", (req, res) => {
 
 })
 
-// router.delete
+router.delete("/:id", (req, res) => {
+
+    let deleteCake = cakes.filter(cake => {
+        return cake.id == req.params.id
+    })
+
+    cakes = cakes.filter(cake => {
+        return cake.id != req.params.id
+    })
+
+    res.json({ deletedCake: deleteCake })
+})
 
 
 

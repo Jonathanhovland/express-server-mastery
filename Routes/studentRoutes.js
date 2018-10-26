@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 
-const students = require("../students.json")
+let students = require("../students.json")
 
 router.get("/", (req, res) => {
     res.json({ students : students })
@@ -23,23 +23,45 @@ router.get("/:id", (req, res, next) => {
 router.post("/", (req, res) => {
     const newStudent = req.body
 
-    students.push(newStudent)
+    students.push(newStudents)
 
-    res.json({ students: students })
+    res.json({ students: newStudent })
 })
 
 router.put("/:id", (req, res) => {
-    const body = req.body
+    let body = req.body
 
-    const updatedStudents = students.map(student => {
-
+    let updateStudents = students.map(student => {
         if (student.id == req.params.id) {
-            return body
+            student = body
+            return student
         }
         return student
     })
 
-    res.json({ students: updatedStudents })
+    students = updateStudents
+
+    let returnUpdated = students.filter(student => {
+        return student = req.params.id
+    })[0]
+
+
+
+    res.json({ updatedStudent: returnUpdated })
+
+})
+
+router.delete("/:id", (req, res) => {
+
+    let deleteStudent = students.filter(student => {
+        return student.id == req.params.id
+    })
+
+    students = students.filter(student => {
+        return student.id != req.params.id
+    })
+
+    res.json({ deletedStudent: deleteStudent })
 })
 
 
