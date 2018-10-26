@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Jonathanhovland/express-server-mastery#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "express": "^4.16.4"
   }
 }
