@@ -13,9 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 
-app.get("/", (req, res) => {
-    res.json("🥨")
-})
+app.get("/", (req, res) => res.json({
+    "cakes": "https://ancient-taiga-84596.herokuapp.com/cakes",
+    "students": "https://ancient-taiga-84596.herokuapp.com/students"
+   }));
 
 app.use("/cakes", cakeRoutes)
 app.use("/students", studentRoutes)
