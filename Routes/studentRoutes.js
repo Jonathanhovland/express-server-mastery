@@ -16,14 +16,14 @@ router.get("/:id", (req, res, next) => {
     return next()
   }
 
-  res.json({ student : chosenStudent })
+  res.json({ student : chosenStudent[0] })
 
 })
 
 router.post("/", (req, res) => {
     const newStudent = req.body
 
-    students.push(newStudents)
+    students.push(newStudent)
 
     res.json({ students: newStudent })
 })
@@ -42,7 +42,7 @@ router.put("/:id", (req, res) => {
     students = updateStudents
 
     let returnUpdated = students.filter(student => {
-        return student = req.params.id
+        return student == req.params.id
     })[0]
 
 

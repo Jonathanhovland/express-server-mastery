@@ -41,7 +41,7 @@ router.put("/:id", (req, res) => {
     cakes = updateCakes
 
     let returnUpdated = cakes.filter(cake => {
-        return cake = req.params.id
+        return cake.id == req.params.id
     })[0]
 
 
